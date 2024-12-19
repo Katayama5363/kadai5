@@ -1,9 +1,14 @@
 version: 0.2
-
 phases:
+  install:
+    commands:
+      - echo Installing dependencies...
   build:
     commands:
-      - aws deploy push --application-name XXX --s3-location s3://XXX/artifact.zip --source src
+      - echo Building the project...
+      - aws sts get-caller-identity
+      - aws s3 ls s3://kadai5s3-2
+      - aws deploy push --application-name kadai5app --s3-location s3://kadai5s3-2/artifact.zip --source src
 artifacts:
   files:
     - '**/*'
